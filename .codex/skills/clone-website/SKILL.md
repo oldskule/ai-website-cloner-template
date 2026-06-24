@@ -24,6 +24,17 @@ The target is whatever page `$ARGUMENTS` resolves to. Clone exactly what's visib
 
 If the user provides additional instructions (specific fidelity level, customizations, extra context), honor those over the defaults.
 
+## Website Cloning Safety Rules
+
+When cloning or analyzing websites:
+
+- If a sitemap is provided, treat it as the authoritative allow-list.
+- Never crawl outside the sitemap.
+- Never enumerate URLs by brute force.
+- Never follow links outside the approved scope.
+- Only download assets required by approved pages.
+- Respect explicit exclude lists.
+
 ## Pre-Flight
 
 1. **Browser automation is required.** Check for available browser MCP tools (Chrome MCP, Playwright MCP, Browserbase MCP, Puppeteer MCP, etc.). Use whichever is available — if multiple exist, prefer Chrome MCP. If none are detected, ask the user which browser tool they have and how to connect it. This skill cannot work without browser automation.

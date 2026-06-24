@@ -24,6 +24,54 @@ The target is whatever page `$ARGUMENTS` resolves to. Clone exactly what's visib
 
 If the user provides additional instructions (specific fidelity level, customizations, extra context), honor those over the defaults.
 
+## URL Scope / Allow-List Rules
+
+When a sitemap URL or sitemap file is provided, treat it as the complete allow-list.
+
+Only inspect, screenshot, clone, download page assets from, or follow links that are:
+
+1. Same origin as the target site
+2. Listed directly in the sitemap
+3. Required static assets used by an allowed sitemap page, such as images, CSS, JS, fonts, favicons, and videos
+
+Do not clone, inspect, or follow URLs outside the sitemap, even if discovered in navigation, footer links, search results, related articles, forms, feeds, or JavaScript.
+
+Before cloning, create:
+
+`docs/research/URL_SCOPE.md`
+
+Include:
+- allowed page URLs
+- skipped URLs
+- reason each skipped URL was rejected
+
+## Joomla Safety Exclusions
+
+Never clone or follow these Joomla paths unless the user explicitly includes them in the sitemap:
+
+- /administrator/
+- /api/
+- /cache/
+- /tmp/
+- /logs/
+- /installation/
+- /component/users/
+- /index.php?option=com_users
+- /index.php?option=com_login
+- /index.php?option=com_search
+- /index.php?option=com_finder
+- /index.php?format=feed
+- /index.php?tmpl=component
+- /media/com_docman/
+- /images/documents/
+- /files/
+- /documents/
+- /*?print=1
+- /*?tmpl=component
+- /*?format=feed
+- /*?start=
+- /*?limitstart=
+
 ## Pre-Flight
 
 1. **Browser automation is required.** Check for available browser MCP tools (Chrome MCP, Playwright MCP, Browserbase MCP, Puppeteer MCP, etc.). Use whichever is available — if multiple exist, prefer Chrome MCP. If none are detected, ask the user which browser tool they have and how to connect it. This skill cannot work without browser automation.
